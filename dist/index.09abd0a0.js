@@ -596,7 +596,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"83FZ8":[function(require,module,exports,__globalThis) {
-var _redom = require("redom");
+var _redom = require("../node_modules/redom");
 const secureText = (0, _redom.el)('p.secure', 'Secure Checkout');
 const cardNumber = (0, _redom.el)('span.card__number', 'xxxx xxxx xxxx xxxx');
 const cardName = (0, _redom.el)('span.card__name', 'John Doe');
@@ -649,7 +649,7 @@ function handleCvvInput(event) {
     event.target.value = value.slice(0, 3);
 }
 
-},{"redom":"cWIuY"}],"cWIuY":[function(require,module,exports,__globalThis) {
+},{"../node_modules/redom":"cWIuY"}],"cWIuY":[function(require,module,exports,__globalThis) {
 (function(global, factory) {
     factory(exports);
 })(this, function(exports1) {

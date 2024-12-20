@@ -1,4 +1,4 @@
-import {el, mount} from 'redom';
+import {el, mount} from '../node_modules/redom';
 
 const secureText = el('p.secure', 'Secure Checkout');
 

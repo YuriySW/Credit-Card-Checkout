@@ -19,6 +19,7 @@ const form = el(
     el('input.input.input__holder', {
       type: 'text',
       placeholder: 'Enter card holder name',
+      maxlength: 50,
       oninput: handleNameInput,
     })
   ),

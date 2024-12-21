@@ -19,7 +19,6 @@ const form = el(
     el('input.input.input__holder', {
       type: 'text',
       placeholder: 'Enter card holder name',
-      maxlength: 50,
       oninput: handleNameInput,
     })
   ),
@@ -64,10 +63,16 @@ mount(document.body, app);
 
 function handleNameInput(event) {
   const value = event.target.value;
-  if (/^[a-zA-Z\s]*$/.test(value)) {
-    cardName.textContent = value || 'John Doe';
+  const words = value.split(' ');
+  const trimmedWords = words.map((word) => word.slice(0, 20));
+  const limitedWords = trimmedWords.slice(0, 2);
+  const limitedValue = limitedWords.join(' ');
+
+  if (/^[a-zA-Z\s]*$/.test(limitedValue)) {
+    cardName.textContent = limitedValue || 'John Doe';
+    event.target.value = limitedValue;
   } else {
-    event.target.value = value.slice(0, -1);
+    event.target.value = limitedValue;
   }
 }
 

@@ -1,6 +1,5 @@
 import {el} from 'redom';
 
-// Создаем элементы карточки
 export const cardNumber = el('span.card__number', 'xxxx xxxx xxxx xxxx');
 export const cardName = el('span.card__name', 'John Doe');
 export const cardDate = el('span.card__date', 'MM/YY');

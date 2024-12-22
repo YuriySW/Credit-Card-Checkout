@@ -1,99 +1,105 @@
-import {el, mount} from '../node_modules/redom';
+import {renderApp} from '../script/modules/render.js';
 
-const secureText = el('p.secure', 'Secure Checkout');
+const container = document.body;
 
-const cardNumber = el('span.card__number', 'xxxx xxxx xxxx xxxx');
+renderApp(container);
 
-const cardName = el('span.card__name', 'John Doe');
-const cardDate = el('span.card__date', 'MM/YY');
+// import {el, mount} from 'redom';
 
-const cardPersonal = el('div.card__personal', cardName, cardDate);
+// const secureText = el('p.secure', 'Secure Checkout');
 
-const creditCard = el('div.credit-card', cardNumber, cardPersonal);
+// const cardNumber = el('span.card__number', 'xxxx xxxx xxxx xxxx');
 
-const form = el(
-  'form.form#form',
-  el(
-    'div.form__input-wrap.form__input-wrap_holder',
-    el('label.form__label.form__holder-label', 'Card Holder'),
-    el('input.input.input__holder', {
-      type: 'text',
-      placeholder: 'Enter card holder name',
-      oninput: handleNameInput,
-    })
-  ),
-  el(
-    'div.form__input-wrap.form__input-wrap_number',
-    el('label.form__label.form__number-label', 'Card Number'),
-    el('input.input.input__number#cardNumber', {
-      type: 'text',
-      placeholder: 'xxxx xxxx xxxx xxxx',
-      maxlength: 19,
-      oninput: handleCardNumberInput,
-    })
-  ),
-  el(
-    'div.form__input-wrap.form__input-wrap_date',
-    el('label.form__label.form__date-label', 'Card Expiry'),
-    el('input.input.input__date', {
-      type: 'text',
-      placeholder: 'MM/YY',
-      maxlength: 5,
-      oninput: handleDateInput,
-    })
-  ),
-  el(
-    'div.form__input-wrap.form__input-wrap_cvv',
-    el('label.form__label.form__cvv-label', 'CVV'),
-    el('input.input.input__cvv', {
-      type: 'text',
-      placeholder: '***',
-      maxlength: 3,
-      oninput: handleCvvInput,
-    })
-  ),
-  el('button.form__button', 'CHECK OUT')
-);
+// const cardName = el('span.card__name', 'John Doe');
+// const cardDate = el('span.card__date', 'MM/YY');
 
-const cardContainer = el('div.card', secureText, creditCard, form);
+// const cardPersonal = el('div.card__personal', cardName, cardDate);
 
-const app = el('div.wrapper', cardContainer);
+// const creditCard = el('div.credit-card', cardNumber, cardPersonal);
 
-mount(document.body, app);
+// const form = el(
+//   'form.form#form',
+//   el(
+//     'div.form__input-wrap.form__input-wrap_holder',
+//     el('label.form__label.form__holder-label', 'Card Holder'),
+//     el('input.input.input__holder', {
+//       type: 'text',
+//       placeholder: 'Enter card holder name',
+//       oninput: handleNameInput,
+//     })
+//   ),
+//   el(
+//     'div.form__input-wrap.form__input-wrap_number',
+//     el('label.form__label.form__number-label', 'Card Number'),
+//     el('input.input.input__number#cardNumber', {
+//       type: 'text',
+//       placeholder: 'xxxx xxxx xxxx xxxx',
+//       maxlength: 19,
+//       oninput: handleCardNumberInput,
+//     })
+//   ),
+//   el(
+//     'div.form__input-wrap.form__input-wrap_date',
+//     el('label.form__label.form__date-label', 'Card Expiry'),
+//     el('input.input.input__date', {
+//       type: 'text',
+//       placeholder: 'MM/YY',
+//       maxlength: 5,
+//       oninput: handleDateInput,
+//     })
+//   ),
+//   el(
+//     'div.form__input-wrap.form__input-wrap_cvv',
+//     el('label.form__label.form__cvv-label', 'CVV'),
+//     el('input.input.input__cvv', {
+//       type: 'text',
+//       placeholder: '***',
+//       maxlength: 3,
+//       oninput: handleCvvInput,
+//     })
+//   ),
+//   el('button.form__button', 'CHECK OUT')
+// );
 
-function handleNameInput(event) {
-  const value = event.target.value;
-  const words = value.split(' ');
-  const trimmedWords = words.map((word) => word.slice(0, 20));
-  const limitedWords = trimmedWords.slice(0, 2);
-  const limitedValue = limitedWords.join(' ');
+// const cardContainer = el('div.card', secureText, creditCard, form);
 
-  if (/^[a-zA-Z\s]*$/.test(limitedValue)) {
-    cardName.textContent = limitedValue || 'John Doe';
-    event.target.value = limitedValue;
-  } else {
-    event.target.value = limitedValue;
-  }
-}
+// const app = el('div.wrapper', cardContainer);
 
-function handleCardNumberInput(event) {
-  let value = event.target.value.replace(/\D/g, '');
-  value = value.slice(0, 16);
-  event.target.value = value.replace(/(\d{4})/g, '$1 ').trim();
-  cardNumber.textContent = event.target.value || 'xxxx xxxx xxxx xxxx';
-}
+// mount(document.body, app);
 
-function handleDateInput(event) {
-  let value = event.target.value.replace(/\D/g, '');
-  value = value.slice(0, 4);
-  if (value.length >= 3) {
-    value = value.slice(0, 2) + '/' + value.slice(2);
-  }
-  event.target.value = value;
-  cardDate.textContent = value || 'MM/YY';
-}
+// function handleNameInput(event) {
+//   const value = event.target.value;
+//   const words = value.split(' ');
+//   const trimmedWords = words.map((word) => word.slice(0, 20));
+//   const limitedWords = trimmedWords.slice(0, 2);
+//   const limitedValue = limitedWords.join(' ');
 
-function handleCvvInput(event) {
-  const value = event.target.value.replace(/\D/g, '');
-  event.target.value = value.slice(0, 3);
-}
+//   if (/^[a-zA-Z\s]*$/.test(limitedValue)) {
+//     cardName.textContent = limitedValue || 'John Doe';
+//     event.target.value = limitedValue;
+//   } else {
+//     event.target.value = limitedValue;
+//   }
+// }
+
+// function handleCardNumberInput(event) {
+//   let value = event.target.value.replace(/\D/g, '');
+//   value = value.slice(0, 16);
+//   event.target.value = value.replace(/(\d{4})/g, '$1 ').trim();
+//   cardNumber.textContent = event.target.value || 'xxxx xxxx xxxx xxxx';
+// }
+
+// function handleDateInput(event) {
+//   let value = event.target.value.replace(/\D/g, '');
+//   value = value.slice(0, 4);
+//   if (value.length >= 3) {
+//     value = value.slice(0, 2) + '/' + value.slice(2);
+//   }
+//   event.target.value = value;
+//   cardDate.textContent = value || 'MM/YY';
+// }
+
+// function handleCvvInput(event) {
+//   const value = event.target.value.replace(/\D/g, '');
+//   event.target.value = value.slice(0, 3);
+// }

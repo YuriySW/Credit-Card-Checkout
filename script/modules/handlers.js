@@ -1,18 +1,30 @@
 import {cardName, cardNumber, cardDate} from './card.js';
 
+// export function handleNameInput(event) {
+//   const value = event.target.value;
+//   const words = value.split(' ');
+//   const trimmedWords = words.map((word) => word.slice(0, 20));
+//   const limitedWords = trimmedWords.slice(0, 2);
+//   const limitedValue = limitedWords.join(' ');
+
+//   if (/^[a-zA-Z\s]*$/.test(limitedValue)) {
+//     cardName.textContent = limitedValue || 'John Doe';
+//     event.target.value = limitedValue;
+//   } else {
+//     event.target.value = limitedValue;
+//   }
+// }
+
 export function handleNameInput(event) {
   const value = event.target.value;
-  const words = value.split(' ');
+  const sanitizedValue = value.replace(/[^a-zA-Z\s]/g, '');
+  const words = sanitizedValue.split(' ');
   const trimmedWords = words.map((word) => word.slice(0, 20));
   const limitedWords = trimmedWords.slice(0, 2);
   const limitedValue = limitedWords.join(' ');
 
-  if (/^[a-zA-Z\s]*$/.test(limitedValue)) {
-    cardName.textContent = limitedValue || 'John Doe';
-    event.target.value = limitedValue;
-  } else {
-    event.target.value = limitedValue;
-  }
+  cardName.textContent = limitedValue || 'John Doe';
+  event.target.value = limitedValue;
 }
 
 export function handleCardNumberInput(event) {

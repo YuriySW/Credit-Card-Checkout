@@ -7,6 +7,13 @@
     "svgo": "^3.3.2"
   },
   "scripts": {
+    "start": "parcel index.html",
     "build": "parcel build index.html"
-  }
+  },
+  "name": "credit_card-1lvl",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
